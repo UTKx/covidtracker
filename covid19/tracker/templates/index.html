@@ -20,10 +20,57 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 
+    <style>
+        .my-col{
+            margin-top: 40px;
+            text-align: center;
+            background-color: #e6e6e6;
+            font-size: 20px;
+            line-height: 40px;
+            color: #777;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        .focus-col{
+            margin-top: 40px;
+            text-align: center;
+            /* background-color: #e6e6e6; */
+            font-size: 30px;
+            font-weight: 300;
+            color: #555;
+        }
+    </style>
 </head>
 
 <body>
-    
+    <!-- Image and text -->
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="#" width="30" height="30" class="d-inline-block align-top" alt="">
+            nCoVTracker
+        </a>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 my-col">COVID-19 CORONAVIRUS PANDEMIC
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 focus-col">Coronavirus Cases:</div>
+            <div class="col-md-4 focus-col">Deaths:</div>
+            <div class="col-md-4 focus-col">Recovered:</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 focus-col">700000</div>
+            <div class="col-md-4 focus-col">32000</div>
+            <div class="col-md-4 focus-col">140000</div>
+        </div>
+    </div>
+
 </body>
 
 </html>
