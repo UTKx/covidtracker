@@ -21,7 +21,7 @@
         crossorigin="anonymous"></script>
 
     <style>
-        .my-col{
+        .my-col {
             margin-top: 40px;
             text-align: center;
             background-color: #e6e6e6;
@@ -31,13 +31,20 @@
             font-family: 'Roboto Condensed', sans-serif;
         }
 
-        .focus-col{
+        .focus-col {
             margin-top: 40px;
             text-align: center;
             /* background-color: #e6e6e6; */
-            font-size: 30px;
+            font-size: 35px;
             font-weight: 300;
             color: #555;
+        }
+
+        .focus-col2 {
+            text-align: center;
+            font-size: 54px;
+            font-weight: 700;
+            color: #696969;
         }
     </style>
 </head>
@@ -60,15 +67,32 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-4 focus-col">Coronavirus Cases:</div>
-            <div class="col-md-4 focus-col">Deaths:</div>
-            <div class="col-md-4 focus-col">Recovered:</div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col focus-col">Coronavirus Cases:</div>
+                </div>
+                <div class="row">
+                    <div class="col focus-col2">700000</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col focus-col">Deaths:</div>
+                </div>
+                <div class="row">
+                    <div class="col focus-col2">32000</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col focus-col">Recovered:</div>
+                </div>
+                <div class="row">
+                    <div class="col focus-col2">140000</div>
+                </div>
+            </div>
         </div>
-        <div class="row">
-            <div class="col-md-4 focus-col">700000</div>
-            <div class="col-md-4 focus-col">32000</div>
-            <div class="col-md-4 focus-col">140000</div>
-        </div>
+
     </div>
 
 </body>
