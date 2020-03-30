@@ -3,6 +3,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 
 from .models import *
 
+import certifi
 import requests
 import json
 import ssl
@@ -13,7 +14,7 @@ import re
 
 def track_all(request):
     url_all = "https://corona.lmao.ninja/all"
-    response = requests.get(url_all, verify=True)
+    response = requests.get(url_all, verify='/etc/ssl/certs/ca-certificates.crt')
     print(response)
     data = response.json()
     # print(data)

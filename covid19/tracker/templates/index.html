@@ -25,7 +25,7 @@
         .my-col {
             margin-top: 40px;
             text-align: center;
-            background-color: #e6e6e6;
+            background-color: #f8f9fa;
             font-size: 20px;
             line-height: 40px;
             color: #777;
@@ -46,6 +46,21 @@
             font-size: 54px;
             font-weight: 700;
             color: #696969;
+        }
+
+        .active-death {
+            color: #ff0000;
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        .active-recov {
+            color: #8aca2b;
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        .active-cases {
+            color: #AAAAAA;
+            font-family: 'Noto Sans', sans-serif;
         }
     </style>
 </head>
@@ -74,7 +89,7 @@
                     <div class="col focus-col">Coronavirus Cases:</div>
                 </div>
                 <div class="row">
-                    <div class="col focus-col2">{{ qs.total_cases }}</div>
+                    <div class="col focus-col2 active-cases">{{ qs.total_cases }}</div>
                 </div>
             </div>
             <div class="col-md-4">
@@ -82,7 +97,7 @@
                     <div class="col focus-col">Deaths:</div>
                 </div>
                 <div class="row">
-                    <div class="col focus-col2">{{ qs.deaths }}</div>
+                    <div class="col focus-col2 active-death">{{ qs.deaths }}</div>
                 </div>
             </div>
             <div class="col-md-4">
@@ -90,7 +105,7 @@
                     <div class="col focus-col">Recovered:</div>
                 </div>
                 <div class="row">
-                    <div class="col focus-col2">{{ qs.recovered }}</div>
+                    <div class="col focus-col2 active-recov">{{ qs.recovered }}</div>
                 </div>
                 {% endfor %}
             </div> 
