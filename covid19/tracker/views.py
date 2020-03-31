@@ -9,8 +9,11 @@ import json
 import ssl
 import re
 
+from  .scrape import *
 
 # Create your views here.
+
+print(add())
 
 def track_all(request):
     url_all = "https://corona.lmao.ninja/all"
@@ -25,4 +28,6 @@ def track_all(request):
         recovered = data['recovered']
     ).save()
     data = covid_world.objects.all().values('total_cases', 'deaths', 'recovered')
+    # context = { 'infected': 'c' }
+    # print('dic',dic)
     return render(request, 'index.html', {'queryset': data})

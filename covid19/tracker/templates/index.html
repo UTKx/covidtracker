@@ -81,6 +81,14 @@
             height: 150px;
         }
 
+        .card-header {
+            padding: 0;
+        }
+
+        .card-body {
+            padding: 0;
+        }        
+
     </style>
 </head>
 
@@ -143,26 +151,26 @@
 
     <div class="container info-card">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="card">
-                    <div>
-                        <h4 style="text-align: center;">Active Cases</h4>
-                        <div class="row justify-content-center">579793</div>
+                    <div class="card-body">
+                        <div class="card-header" style="text-align: center; ">Active Cases</div>
+                        <div class="row justify-content-center" style="margin-top: 10px;">{{ infected }}</div>
                         <div class="row card-text">
-                            <div class="col" style="text-align: left; margin-top: 40px;">12313</div>
-                            <div class="col" style="text-align: right;">43234</div>
+                            <div class="col" style="text-align: left; margin-left: 10px;">12313</div>
+                            <div class="col" style="text-align: right; margin-right: 10px">43234</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h4 style="text-align: center;">Closed Cases</h4>
-                        <div class="row justify-content-center">579793</div>
+                        <div class="card-header" style="text-align: center;">Closed Cases</div>
+                        <div class="row justify-content-center" style="margin-top: 10px;">579793</div>
                         <div class="row card-text">
-                            <div class="col" style="text-align: left;">12313</div>
-                            <div class="col" style="text-align: right;">43234</div>
+                            <div class="col" style="text-align: left; margin-left: 10px;">12313</div>
+                            <div class="col" style="text-align: right; margin-right: 10px">43234</div>
                         </div>
                     </div>
                 </div>
