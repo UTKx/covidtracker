@@ -13,7 +13,6 @@ from  .scrape import *
 
 # Create your views here.
 
-print(add())
 
 def track_all(request):
     url_all = "https://corona.lmao.ninja/all"
@@ -28,6 +27,12 @@ def track_all(request):
         recovered = data['recovered']
     ).save()
     data = covid_world.objects.all().values('total_cases', 'deaths', 'recovered')
-    # context = { 'infected': 'c' }
-    # print('dic',dic)
-    return render(request, 'index.html', {'queryset': data})
+    
+    active_cases.objects.all().delete()
+    active_cases(
+        active_cases = active_cases['infected'],
+        mild_cases = active_cases['mild'],
+        critical_cases = active_cases['critical']
+    ).save()
+    active = active_cases.objects.all().values('active_cases', 'mild_cases', 'critical_cases')
+    return render(request, 'index.html', {'queryset': data}, {'active_cases': active_cases})

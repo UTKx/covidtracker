@@ -82,7 +82,8 @@
         }
 
         .card-header {
-            padding: 0;
+            font-size: 20px;
+            font-family: 'Noto Sans', sans-serif;
         }
 
         .card-body {
@@ -154,11 +155,11 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-header" style="text-align: center; ">Active Cases</div>
-                        <div class="row justify-content-center" style="margin-top: 10px;">{{ infected }}</div>
+                        <div class="card-header" style="text-align: center;">ACTIVE CASES</div>
+                        <div class="row card-text justify-content-center" style="margin-top: 10px;">{{ active_cases }}</div>
                         <div class="row card-text">
-                            <div class="col" style="text-align: left; margin-left: 10px;">12313</div>
-                            <div class="col" style="text-align: right; margin-right: 10px">43234</div>
+                            <div class="col" style="text-align: left; margin-left: 10px;">{{ mild }}</div>
+                            <div class="col" style="text-align: right; margin-right: 10px">{{ critical }}</div>
                         </div>
                     </div>
                 </div>
@@ -166,8 +167,8 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-header" style="text-align: center;">Closed Cases</div>
-                        <div class="row justify-content-center" style="margin-top: 10px;">579793</div>
+                        <div class="card-header" style="text-align: center;">CLOSED CASES</div>
+                        <div class="row card-text justify-content-center" style="margin-top: 10px;">579793</div>
                         <div class="row card-text">
                             <div class="col" style="text-align: left; margin-left: 10px;">12313</div>
                             <div class="col" style="text-align: right; margin-right: 10px">43234</div>
