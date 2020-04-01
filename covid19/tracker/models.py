@@ -13,14 +13,14 @@ class covid_world(models.Model):
 
 class covid_country(models.Model):
     update_id = models.AutoField(primary_key=True)
-    country_name = models.CharField(max_length=100)
-    total_cases = models.IntegerField()
-    today_cases = models.IntegerField()
-    total_deaths = models.IntegerField()
-    today_deaths = models.IntegerField()
-    recovered = models.IntegerField()
-    active = models.IntegerField()
-    critical = models.IntegerField()
+    Country = models.CharField(max_length=100)
+    Total_Cases = models.IntegerField()
+    Today_Cases = models.IntegerField()
+    Total_Deaths = models.IntegerField()
+    Today_Deaths = models.IntegerField()
+    Recovered = models.IntegerField()
+    Active = models.IntegerField()
+    Critical = models.IntegerField()
 
     def __str__(self):
         return self.Country
