@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>nCoVTracker|Coronavirus Update</title>
 
     <!-- Bootstrap CSS -->
@@ -71,6 +71,7 @@
         a {
             font-size: 14px;
             font-family: 'Noto Sans', sans-serif;
+            /* text-decoration: underline; */
         }
 
         .info-card {
@@ -82,14 +83,17 @@
         }
 
         .card-header {
-            font-size: 20px;
+            font-size: 19px;
             font-family: 'Noto Sans', sans-serif;
         }
 
         .card-body {
             padding: 0;
-        }        
+        }
 
+        .my-table {
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -136,48 +140,84 @@
                     <div class="col focus-col2 active-recov">{{ qs.recovered }}</div>
                 </div>
                 {% endfor %}
-            </div> 
+            </div>
         </div>
     </div>
 
     <div class="container links">
         <a href="">Mortality</a>
-         - 
+        -
         <a href="">Symptoms</a>
-         - 
+        -
         <a href="">Incubation Period</a>
-         - 
+        -
         <a href="">Age</a>
     </div>
 
-    <div class="container info-card">
-        <div class="row">
-            <div class="col-md-6">
+    <!-- <div class="container info-card">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-header" style="text-align: center;">ACTIVE CASES</div>
-                        <div class="row card-text justify-content-center" style="margin-top: 10px;">{{ active_cases }}</div>
+                        {% for ac in active %}
+                        <div class="row card-text justify-content-center" style="margin-top: 10px;">
+                            <h3>{{ ac.active_cases }}</h3>
+                        </div>
                         <div class="row card-text">
-                            <div class="col" style="text-align: left; margin-left: 10px;">{{ mild }}</div>
-                            <div class="col" style="text-align: right; margin-right: 10px">{{ critical }}</div>
+                            <div class="col" style="text-align: left; margin-left: 10px;">{{ ac.mild_cases }}</div>
+                            <div class="col" style="text-align: right; margin-right: 10px">{{ ac.critical_cases }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-header" style="text-align: center;">MORTALITY</div>
+                        <div class="row card-text justify-content-center">
+                            <div class="col"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-header" style="text-align: center;">CLOSED CASES</div>
+                        {% for qs in queryset %}
                         <div class="row card-text justify-content-center" style="margin-top: 10px;">579793</div>
                         <div class="row card-text">
-                            <div class="col" style="text-align: left; margin-left: 10px;">12313</div>
-                            <div class="col" style="text-align: right; margin-right: 10px">43234</div>
+                            <div class="col" style="text-align: left; margin-left: 10px;">{{qs.deaths}}</div>
+                            <div class="col" style="text-align: right; margin-right: 10px">{{qs.recovered}}</div>
                         </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
-    </div> 
+    </div> -->
+
+    <div class="container">
+        <div style="margin-top: 40px;">
+            <h3>Confirmed Cases and Deaths by Country, Territory, or Conveyance</h3>
+        </div>
+        <div style="margin-top: 40px;">
+            <p>The <b>coronavirus</b> COVID-19 is affecting <b>203 countries and territories</b> around the world and
+                <b>2 international
+                    conveyances:</b> the Diamond Princess cruise ship harbored in Yokohama, Japan, and the Holland
+                America's MS
+                Zaandam cruise ship.</p>
+        </div>
+        <div class="container">
+                {% autoescape off %}
+                {{ html_table }}
+                {% endautoescape %}
+        </div>
+    </div>
+
 </body>
 
 </html>

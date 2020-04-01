@@ -3,6 +3,6 @@ from django.urls import path, include
 
 from . import views
 
-rlpatterns = [
+urlpatterns = [
     path('', views.track_all),
 ]
