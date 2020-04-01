@@ -35,24 +35,24 @@ def track_all(request):
     covid_country.objects.all().delete()
     for datum in data_country:
         covid_country(
-            country_name = datum['country'],
-            total_cases = datum['cases'],
-            today_cases = datum['todayCases'],
-            total_deaths = datum['deaths'],
-            today_deaths = datum['todayDeaths'],
-            recovered = datum['recovered'],
-            active = datum['active'],
-            critical = datum['critical']
+            Country = datum['country'],
+            Total_Cases = datum['cases'],
+            Today_Cases = datum['todayCases'],
+            Total_Deaths = datum['deaths'],
+            Today_Deaths = datum['todayDeaths'],
+            Recovered = datum['recovered'],
+            Active = datum['active'],
+            Critical = datum['critical']
         ).save()
     print(data)
-    data_country_obj = covid_country.objects.all().values('country_name', 'total_cases', 'today_cases', 'total_deaths', 'today_deaths',
-                                                            'recovered', 'active', 'critical')
+    data_country_obj = covid_country.objects.all().values('Country', 'Total_Cases', 'Today_Cases', 'Total_Deaths', 'Today_Deaths',
+                                                            'Recovered', 'Active', 'Critical')
     
     json.dumps(list(data_country_obj), cls=DjangoJSONEncoder)
 
     df = pd.DataFrame(data_country_obj)
-    df.fillna('', inplace=True)
-    df = df.to_html(classes="table table-light table-bordered table-hover my-table")
-    # df1 = re.sub(r'<table border="1"', r'<table', df)
+    df = df.replace('nan', '')
+    # df.fillna('', inplace=True)
+    df = df.to_html(classes="table table-striped table-bordered table-hover table-responsive-md my-table")
 
     return render(request, 'index.html', {'queryset': data, 'html_table': df})
