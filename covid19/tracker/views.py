@@ -51,8 +51,6 @@ def track_all(request):
     json.dumps(list(data_country_obj), cls=DjangoJSONEncoder)
 
     df = pd.DataFrame(data_country_obj)
-    df = df.replace('nan', '')
-    # df.fillna('', inplace=True)
-    df = df.to_html(classes="table table-striped table-bordered table-hover table-responsive-md my-table")
+    df = df.to_html(classes="table table-striped table-bordered table-hover table-responsive-md")
 
     return render(request, 'index.html', {'queryset': data, 'html_table': df})
