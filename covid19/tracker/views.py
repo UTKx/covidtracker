@@ -14,7 +14,7 @@ from  .scrape import *
 # Create your views here.
 
 
-def track_all(request):
+def track(request):
     url_all = "https://corona.lmao.ninja/all"
     response = requests.get(url_all, verify='/etc/ssl/certs/ca-certificates.crt')
     print(response)
