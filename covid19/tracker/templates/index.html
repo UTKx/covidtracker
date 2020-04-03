@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,136 +26,9 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/5f5dfb5344.js" crossorigin="anonymous"></script>
 
-    <style>
-        body {
-            font-family: noto sans, sans-serif;
-        }
-
-        .navbar {
-            background-color: #fff;
-            border-bottom: 1px #e3e7e9 solid;
-        }
-
-        .navbar-brand {
-            margin-left: 50px;
-        }
-
-        .my-col {
-            margin-top: 30px;
-            text-align: center;
-            background-color: #f8f9fa;
-            font-size: 20px;
-            line-height: 40px;
-            color: #777;
-            font-family: 'Roboto Condensed', sans-serif;
-        }
-
-        .focus-col {
-            margin-top: 40px;
-            text-align: center;
-            /* background-color: #e6e6e6; */
-            font-size: 35px;
-            font-weight: 300;
-            color: #555;
-        }
-
-        .focus-col2 {
-            text-align: center;
-            font-size: 54px;
-            font-weight: 700;
-            color: #696969;
-        }
-
-        .active-death {
-            color: #ff0000;
-            font-family: 'Noto Sans', sans-serif;
-        }
-
-        .active-recov {
-            color: #8aca2b;
-            font-family: 'Noto Sans', sans-serif;
-        }
-
-        .active-cases {
-            color: #AAAAAA;
-            font-family: 'Noto Sans', sans-serif;
-        }
-
-        .links {
-            margin-top: 50px;
-            text-align: center;
-        }
-
-        a {
-            font-size: 14px;
-            font-family: 'Noto Sans', sans-serif;
-            /* text-decoration: underline; */
-        }
-
-        .info-card {
-            margin-top: 40px;
-        }
-
-        .card {
-            height: 150px;
-        }
-
-        .card-header {
-            font-size: 19px;
-            font-family: 'Noto Sans', sans-serif;
-        }
-
-        .card-body {
-            padding: 0;
-        }
-
-        .table {
-            table-layout: fixed;
-            font-family: noto sans, sans-serif;
-            /* width:initial; */
-        }
-
-        .table,
-        td,
-        th {
-            text-align: center;
-            color: #666;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        .table,
-        td {
-            text-align: right;
-            color: #363945;
-            font-size: 15.5px;
-            font-weight: bold;
-        }
-
-        .footer-col {
-            text-align: center;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        .super-footer {
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        .alert {
-            text-align: center;
-            margin-top: 30px;
-            width: 100%;
-            margin-bottom: 0;
-            height: 30px;
-            line-height: 30px;
-            font-size: 13px;
-            padding:0px 15px;
-            border-radius: 0;
-        }
-
-    </style>
+    <!-- style.css -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    
 </head>
 
 <body>
@@ -178,7 +53,7 @@
 
     <div class="container-fluid" style="padding-left: 0; padding-right: 0;">
         <div class="alert alert-danger" role="alert">
-            Coronavirus Alert. Stay inside. Stay safe.
+            Stay Home. Save Lives : Help Stop Coronavirus
         </div>
     </div>
 
@@ -418,9 +293,11 @@
             <div class="row justify-content-center">
                 <div class="col-md-2 footer-col">
                     <a href="" title="Newsletter"><i class="fas fa-envelope-open-text"
-                            style="padding: 0px 5px;"></i></a>
-                    <a href="" title="Twitter"><i class="fab fa-twitter" style="padding: 0px 5px;"></i></a>
-                    <a href="" title="Facebook"><i class="fab fa-facebook-f" style="padding: 0px 5px;"></i></a>
+                            style="padding: 0px 5px; color: #E94F37;"></i></a>
+                    <a href="" title="Twitter"><i class="fab fa-twitter"
+                            style="padding: 0px 5px; color: #1ca0f1;"></i></a>
+                    <a href="" title="Facebook"><i class="fab fa-facebook-f"
+                            style="padding: 0px 5px; color: #4267b2;"></i></a>
                 </div>
             </div>
         </div>
@@ -430,7 +307,7 @@
         <div class="container">
             <div class="row justify-content-center super-footer" style="font-size: 12px;">
                 &copy; Copyright nCoVTracker.info - All rights reserved -&nbsp;<a href="#"
-                    style="font-size: 10px;">Disclaimer & Privacy Policy</a>
+                    style="font-size: 12px;">Disclaimer & Privacy Policy</a>
             </div>
         </div>
     </div>

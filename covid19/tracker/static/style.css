@@ -1,0 +1,127 @@
+body {
+    font-family: noto sans, sans-serif;
+}
+
+.navbar {
+    background-color: #fff;
+    border-bottom: 1px #e3e7e9 solid;
+}
+
+.navbar-brand {
+    margin-left: 50px;
+}
+
+.my-col {
+    margin-top: 30px;
+    text-align: center;
+    background-color: #f8f9fa;
+    font-size: 20px;
+    line-height: 40px;
+    color: #777;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.focus-col {
+    margin-top: 40px;
+    text-align: center;
+    /* background-color: #e6e6e6; */
+    font-size: 35px;
+    font-weight: 300;
+    color: #555;
+}
+
+.focus-col2 {
+    text-align: center;
+    font-size: 54px;
+    font-weight: 700;
+    color: #696969;
+}
+
+.active-death {
+    color: #ff0000;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.active-recov {
+    color: #8aca2b;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.active-cases {
+    color: #AAAAAA;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.links {
+    margin-top: 50px;
+    text-align: center;
+}
+
+a {
+    font-size: 14px;
+    font-family: 'Noto Sans', sans-serif;
+    /* text-decoration: underline; */
+}
+
+.info-card {
+    margin-top: 40px;
+}
+
+.card {
+    height: 150px;
+}
+
+.card-header {
+    font-size: 19px;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.table {
+    table-layout: fixed;
+    font-family: noto sans, sans-serif;
+    /* width:initial; */
+}
+
+.table,
+td,
+th {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.table,
+td {
+    text-align: right;
+    color: #363945;
+    font-size: 15.5px;
+    font-weight: bold;
+}
+
+.footer-col {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.super-footer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.alert {
+    text-align: center;
+    margin-top: 30px;
+    width: 100%;
+    margin-bottom: 0;
+    height: 30px;
+    line-height: 30px;
+    font-size: 13px;
+    padding: 0px 15px;
+    border-radius: 0;
+}
