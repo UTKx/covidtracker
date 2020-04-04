@@ -16,7 +16,7 @@ from  .scrape import *
 
 def track(request):
     url_all = "https://corona.lmao.ninja/all"
-    response = requests.get(url_all, verify='/etc/ssl/certs/ca-certificates.crt')
+    response = requests.get(url_all, verify=True)
     print(response)
     data = response.json()
     
@@ -29,7 +29,7 @@ def track(request):
     data = covid_world.objects.all().values('total_cases', 'deaths', 'recovered')
     
     url_country = "https://corona.lmao.ninja/countries"
-    response = requests.get(url_country, verify='/etc/ssl/certs/ca-certificates.crt')
+    response = requests.get(url_country, verify=True)
     data_country = response.json()
 
     covid_country.objects.all().delete()
