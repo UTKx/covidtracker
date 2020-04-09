@@ -26,7 +26,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Built With
 + [Django](https://www.djangoproject.com/) - The web framework used
-+ [Bootstrap](https://getbootstrap.com/) - Front-end framework used
++ [Bootstrap](https://getbootstrap.com/) - The front-end framework used
 
 # License
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/UTKx/covidtracker/blob/master/LICENSE) file for details.
