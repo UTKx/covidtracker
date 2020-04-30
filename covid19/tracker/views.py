@@ -14,7 +14,7 @@ from  .scrape import *
 # Create your views here.
 
 def track(request):
-    url_all = "https://corona.lmao.ninja/all"
+    url_all = "https://corona.lmao.ninja/v2/all"
     response = requests.get(url_all, verify=True)
     print(response)
     data = response.json()
@@ -27,7 +27,7 @@ def track(request):
     ).save()
     data = covid_world.objects.all().values('total_cases', 'deaths', 'recovered')
     
-    url_country = "https://corona.lmao.ninja/countries"
+    url_country = "https://corona.lmao.ninja/v2/countries"
     response = requests.get(url_country, verify=True)
     data_country = response.json()
 
