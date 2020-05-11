@@ -7,6 +7,7 @@ import requests
 import json
 import ssl
 import re
+import numpy as np
 import pandas as pd
 
 from  .scrape import *
@@ -41,15 +42,33 @@ def track(request):
             Today_Deaths = datum['todayDeaths'],
             Recovered = datum['recovered'],
             Active = datum['active'],
-            Critical = datum['critical']
+            Critical = datum['critical'],
+            Casepermillion = datum['casesPerOneMillion'],
+            Deathpermillion = datum['deathsPerOneMillion'],
+            Tests = datum['tests'],
+            Testpermillion = datum['testsPerOneMillion']
         ).save()
     print(data)
     data_country_obj = covid_country.objects.all().values('Country', 'Total_Cases', 'Today_Cases', 'Total_Deaths', 'Today_Deaths',
-                                                            'Recovered', 'Active', 'Critical')
+                                                            'Recovered', 'Active', 'Critical', 'Casepermillion', 'Deathpermillion', 'Tests', 'Testpermillion')
     
     json.dumps(list(data_country_obj), cls=DjangoJSONEncoder)
 
     df = pd.DataFrame(data_country_obj)
-    df = df.to_html(classes="table table-striped table-bordered table-hover table-responsive-md")
+    
+    df = df.sort_values(['Total_Cases'], ascending=[False])
+    df.columns = ['Country, Others', 'Total Cases', 'New Cases', 'Total Deaths', 'New Deaths', 'Total Recovered', 'Active Cases', 'Critical Cases', 'Cases/ 1M pop', 'Deaths/ 1M pop', 'Total Tests', 'Tests/ 1M pop'] 
+
+    num_format = lambda x: '{:,}'.format(x)
+    def build_formatters(df, format):
+         return {
+             column:format 
+             for column, dtype in df.dtypes.items()
+             if dtype in [ np.dtype('int64'), np.dtype('float64') ] 
+    }
+    formatters = build_formatters(df, num_format)
+
+
+    df = df.to_html(classes="table table-bordered table-hover table-responsive-md", index=False, formatters=formatters)
 
     return render(request, 'index.html', {'queryset': data, 'html_table': df})

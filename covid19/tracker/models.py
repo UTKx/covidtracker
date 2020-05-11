@@ -21,6 +21,10 @@ class covid_country(models.Model):
     Recovered = models.IntegerField()
     Active = models.IntegerField()
     Critical = models.IntegerField()
+    Casepermillion = models.IntegerField()
+    Deathpermillion = models.IntegerField()
+    Tests = models.IntegerField()
+    Testpermillion = models.IntegerField()
 
     def __str__(self):
         return self.Country

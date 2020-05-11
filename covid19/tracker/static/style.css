@@ -83,24 +83,40 @@ a {
 .table {
     table-layout: fixed;
     font-family: noto sans, sans-serif;
-    /* width:initial; */
+    width: auto;
+}
+
+.table thead th {
+    height: 30px;
+    line-height: 25px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #fdfffc;
 }
 
 .table,
 td,
 th {
     text-align: center;
+    vertical-align: middle;
     color: #666;
-    font-size: 14px;
+    font-size: 14.5px;
     font-weight: bold;
 }
 
 .table,
 td {
     text-align: right;
+    vertical-align: middle;
     color: #363945;
-    font-size: 15.5px;
+    font-size: 15px;
     font-weight: bold;
+}
+
+tbody>tr>:nth-child(1) {
+    color: #008FFF;
+    text-align: left;
+    width: 125px;
 }
 
 .footer-col {
