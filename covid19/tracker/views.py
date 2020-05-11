@@ -16,8 +16,8 @@ from  .scrape import *
 
 def track(request):
     url_all = "https://corona.lmao.ninja/v2/all"
-    response = requests.get(url_all, verify=True)
-    print(response)
+    response = requests.get(url_all, verify='/etc/ssl/certs')
+    # print(response)
     data = response.json()
     
     covid_world.objects.all().delete()
@@ -67,7 +67,6 @@ def track(request):
              if dtype in [ np.dtype('int64'), np.dtype('float64') ] 
     }
     formatters = build_formatters(df, num_format)
-
 
     df = df.to_html(classes="table table-bordered table-hover table-responsive-md", index=False, formatters=formatters)
 
