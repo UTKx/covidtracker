@@ -14,11 +14,11 @@ These instructions will get you a copy of the project up and running on your loc
 2. Create a virtual environment using command `virtualenv your-environment-name`. Name your environment whatever you like.
 3. Now activate your newly created environment.
 	+ For Windows users
-		- Type `cd path-to-your-virtual-environment/scripts` in your terminal.
+		- Type `cd file/path/to/your/virtual/environment/scripts` in your terminal.
 		- Then type `activate` and your virtual environment  is up and running.
 	+ For Linux or Mac users
-		- Run `source path-to-your-virtual-environment/bin/activate`. This will activate your virtual environment.
-4. Go to the project directory using `cd path-to-the project`
+		- Run `source file/path/to/your/virtual/environment/bin/activate`. This will activate your virtual environment.
+4. Go to the project directory using `cd path/to/the/project`
 5. Run this command `pip install -r requirements.txt`. This will install all the necessary modules need to run the project.
 6. Change your directory to where `manage.py` is located.
 7. Run `python manage.py runserver` in your terminal.
