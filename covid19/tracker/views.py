@@ -16,7 +16,7 @@ from  .scrape import *
 
 def track(request):
     url_all = "https://corona.lmao.ninja/v2/all"
-    response = requests.get(url_all, verify='/etc/ssl/certs')
+    response = requests.get(url_all, verify=True)
     # print(response)
     data = response.json()
     
