@@ -1,143 +1,143 @@
 body {
-    font-family: noto sans, sans-serif;
+  font-family: noto sans, sans-serif;
 }
 
 .navbar {
-    background-color: #fff;
-    border-bottom: 1px #e3e7e9 solid;
+  background-color: #fff;
+  border-bottom: 1px #e3e7e9 solid;
 }
 
 .navbar-brand {
-    margin-left: 50px;
+  margin-left: 50px;
 }
 
 .my-col {
-    margin-top: 30px;
-    text-align: center;
-    background-color: #f8f9fa;
-    font-size: 20px;
-    line-height: 40px;
-    color: #777;
-    font-family: 'Roboto Condensed', sans-serif;
+  margin-top: 30px;
+  text-align: center;
+  background-color: #f8f9fa;
+  font-size: 20px;
+  line-height: 40px;
+  color: #777;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .focus-col {
-    margin-top: 40px;
-    text-align: center;
-    /* background-color: #e6e6e6; */
-    font-size: 35px;
-    font-weight: 300;
-    color: #555;
+  margin-top: 40px;
+  text-align: center;
+  /* background-color: #e6e6e6; */
+  font-size: 35px;
+  font-weight: 300;
+  color: #555;
 }
 
 .focus-col2 {
-    text-align: center;
-    font-size: 54px;
-    font-weight: 700;
-    color: #696969;
+  text-align: center;
+  font-size: 54px;
+  font-weight: 700;
+  color: #696969;
 }
 
 .active-death {
-    color: #ff0000;
-    font-family: 'Noto Sans', sans-serif;
+  color: #ff0000;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .active-recov {
-    color: #8aca2b;
-    font-family: 'Noto Sans', sans-serif;
+  color: #8aca2b;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .active-cases {
-    color: #AAAAAA;
-    font-family: 'Noto Sans', sans-serif;
+  color: #aaaaaa;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .links {
-    margin-top: 50px;
-    text-align: center;
+  margin-top: 50px;
+  text-align: center;
 }
 
 a {
-    font-size: 14px;
-    font-family: 'Noto Sans', sans-serif;
-    /* text-decoration: underline; */
+  font-size: 14px;
+  font-family: "Noto Sans", sans-serif;
+  /* text-decoration: underline; */
 }
 
 .info-card {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
 .card {
-    height: 150px;
+  height: 150px;
 }
 
 .card-header {
-    font-size: 19px;
-    font-family: 'Noto Sans', sans-serif;
+  font-size: 19px;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .card-body {
-    padding: 0;
+  padding: 0;
 }
 
 .table {
-    table-layout: fixed;
-    font-family: noto sans, sans-serif;
-    width: auto;
+  table-layout: fixed;
+  font-family: noto sans, sans-serif;
+  width: auto;
 }
 
 .table thead th {
-    height: 30px;
-    line-height: 25px;
-    text-align: center;
-    vertical-align: middle;
-    background-color: #fdfffc;
+  height: 30px;
+  line-height: 25px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #fdfffc;
 }
 
 .table,
 td,
 th {
-    text-align: center;
-    vertical-align: middle;
-    color: #666;
-    font-size: 14.5px;
-    font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  color: #666;
+  font-size: 14.5px;
+  font-weight: bold;
 }
 
 .table,
 td {
-    text-align: right;
-    vertical-align: middle;
-    color: #363945;
-    font-size: 15px;
-    font-weight: bold;
+  text-align: right;
+  vertical-align: middle;
+  color: #363945;
+  font-size: 15px;
+  font-weight: bold;
 }
 
-tbody>tr>:nth-child(1) {
-    color: #008FFF;
-    text-align: left;
-    width: 125px;
+tbody > tr > :nth-child(1) {
+  color: #008fff;
+  text-align: left;
+  width: 125px;
 }
 
 .footer-col {
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .super-footer {
-    margin-top: 20px;
-    margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .alert {
-    text-align: center;
-    margin-top: 30px;
-    width: 100%;
-    margin-bottom: 0;
-    height: 30px;
-    line-height: 30px;
-    font-size: 13px;
-    padding: 0px 15px;
-    border-radius: 0;
+  text-align: center;
+  margin-top: 30px;
+  width: 100%;
+  margin-bottom: 0;
+  height: 30px;
+  line-height: 30px;
+  font-size: 13px;
+  padding: 0px 15px;
+  border-radius: 0;
 }

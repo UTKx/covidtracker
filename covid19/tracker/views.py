@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core.serializers.json import DjangoJSONEncoder
 
-from .models import *
+from .models import covid_world, covid_country
 
 import requests
 import json
@@ -19,6 +19,25 @@ def track(request):
     response = requests.get(url_all, verify=True)
     # print(response)
     data = response.json()
+    # print(data)
+
+    active = {}
+    active_cases = int(data['active'])
+    critical = int(data['critical'])
+    mild_cases = active_cases - critical
+    active['active'] = active_cases
+    active['critical'] = critical
+    active['mild'] = mild_cases
+    print(active)
+
+    closed = {}
+    recovered = int(data['recovered'])
+    deaths = int(data['deaths'])
+    closed_cases = recovered + deaths
+    closed['closed'] = closed_cases
+    closed['recovered'] = recovered
+    closed['deaths'] = deaths
+    print(closed)
     
     covid_world.objects.all().delete()
     covid_world(
@@ -48,7 +67,7 @@ def track(request):
             Tests = datum['tests'],
             Testpermillion = datum['testsPerOneMillion']
         ).save()
-    print(data)
+    # print(data)
     data_country_obj = covid_country.objects.all().values('Country', 'Total_Cases', 'Today_Cases', 'Total_Deaths', 'Today_Deaths',
                                                             'Recovered', 'Active', 'Critical', 'Casepermillion', 'Deathpermillion', 'Tests', 'Testpermillion')
     
@@ -70,4 +89,4 @@ def track(request):
 
     df = df.to_html(classes="table table-bordered table-hover table-responsive-md", index=False, formatters=formatters)
 
-    return render(request, 'index.html', {'queryset': data, 'html_table': df})
+    return render(request, 'index.html', {'queryset': data, 'html_table': df, 'active': active, 'closed': closed})

@@ -40,10 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     
     # Custom app
-    'tracker'
+    'tracker',
+    # 'debug_toolbar',
 ]
 
 MIDDLEWARE = [
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,6 +53,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+INTERNAL_IPS = [
+    '127.0.0.1',
 ]
 
 ROOT_URLCONF = 'covid19.urls'
@@ -79,8 +85,12 @@ WSGI_APPLICATION = 'covid19.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'covid',
+        'USER': 'root',
+        'PASSWORD': 'mig21',
+        'HOST': 'localhost',
+        'PORT': '3306'
     }
 }
 
@@ -123,5 +133,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'tracker/static'),
 ]
