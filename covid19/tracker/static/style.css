@@ -63,23 +63,6 @@ a {
   /* text-decoration: underline; */
 }
 
-.info-card {
-  margin-top: 40px;
-}
-
-.card {
-  height: 150px;
-}
-
-.card-header {
-  font-size: 19px;
-  font-family: "Noto Sans", sans-serif;
-}
-
-.card-body {
-  padding: 0;
-}
-
 .table {
   table-layout: fixed;
   font-family: noto sans, sans-serif;
@@ -140,4 +123,13 @@ tbody > tr > :nth-child(1) {
   font-size: 13px;
   padding: 0px 15px;
   border-radius: 0;
+}
+
+.card-text {
+    font-family: noto sans,sans-serif;
+    color: #222;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+
 }
