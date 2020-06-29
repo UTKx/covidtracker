@@ -14,12 +14,10 @@ from  .scrape import *
 
 # Create your views here.
 
-def track(request):
+def trackCovid(request):
     url_all = "https://corona.lmao.ninja/v2/all"
     response = requests.get(url_all, verify=True)
-    # print(response)
     data = response.json()
-    # print(data)
 
     active = {}
     active_cases = int(data['active'])

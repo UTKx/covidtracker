@@ -2,6 +2,7 @@ body {
   font-family: noto sans, sans-serif;
 }
 
+/* navbar */
 .navbar {
   background-color: #fff;
   border-bottom: 1px #e3e7e9 solid;
@@ -10,6 +11,8 @@ body {
 .navbar-brand {
   margin-left: 50px;
 }
+/* navbar */
+
 
 .my-col {
   margin-top: 30px;
@@ -21,6 +24,7 @@ body {
   font-family: "Roboto Condensed", sans-serif;
 }
 
+/* world stats */
 .focus-col {
   margin-top: 40px;
   text-align: center;
@@ -51,7 +55,9 @@ body {
   color: #aaaaaa;
   font-family: "Noto Sans", sans-serif;
 }
+/* stats end */
 
+/* links */
 .links {
   margin-top: 50px;
   text-align: center;
@@ -62,7 +68,9 @@ a {
   font-family: "Noto Sans", sans-serif;
   /* text-decoration: underline; */
 }
+/* end */
 
+/* table */
 .table {
   table-layout: fixed;
   font-family: noto sans, sans-serif;
@@ -101,7 +109,9 @@ tbody > tr > :nth-child(1) {
   text-align: left;
   width: 125px;
 }
+/* end */
 
+/* footer */
 .footer-col {
   text-align: center;
   margin-top: 20px;
@@ -112,7 +122,9 @@ tbody > tr > :nth-child(1) {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+/* end */
 
+/* message */
 .alert {
   text-align: center;
   margin-top: 30px;
@@ -124,7 +136,9 @@ tbody > tr > :nth-child(1) {
   padding: 0px 15px;
   border-radius: 0;
 }
+/* end */
 
+/* card */
 .card-container {
   margin-top: 40px;
 }
@@ -177,7 +191,7 @@ tbody > tr > :nth-child(1) {
 }
 
 .stat-crit {
-  color: #FF621F;
+  color: #F0D719;
 }
 
 .stat-recovered {
@@ -187,3 +201,4 @@ tbody > tr > :nth-child(1) {
 .stat-death {
   color: #ff0000;
 }
+/* end */
