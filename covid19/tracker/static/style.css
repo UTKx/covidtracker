@@ -28,7 +28,6 @@ body {
 .focus-col {
   margin-top: 40px;
   text-align: center;
-  /* background-color: #e6e6e6; */
   font-size: 35px;
   font-weight: 300;
   color: #555;
@@ -66,7 +65,6 @@ body {
 a {
   font-size: 14px;
   font-family: "Noto Sans", sans-serif;
-  /* text-decoration: underline; */
 }
 /* end */
 

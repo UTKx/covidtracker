@@ -10,15 +10,15 @@ import re
 import numpy as np
 import pandas as pd
 
-from  .scrape import *
-
-# Create your views here.
 
 def trackCovid(request):
+    # URL for world stats
     url_all = "https://corona.lmao.ninja/v2/all"
     response = requests.get(url_all, verify=True)
+    # Converting to json format
     data = response.json()
 
+    # Dictionary for active cases
     active = {}
     active_cases = int(data['active'])
     critical = int(data['critical'])
@@ -26,8 +26,8 @@ def trackCovid(request):
     active['active'] = active_cases
     active['critical'] = critical
     active['mild'] = mild_cases
-    print(active)
 
+    # Dictionary for closed cases
     closed = {}
     recovered = int(data['recovered'])
     deaths = int(data['deaths'])
@@ -35,56 +35,72 @@ def trackCovid(request):
     closed['closed'] = closed_cases
     closed['recovered'] = recovered
     closed['deaths'] = deaths
-    print(closed)
-    
+
+    # Deleting the rows in the table
     covid_world.objects.all().delete()
+    # Inserting the data in table
     covid_world(
-        total_cases = data['cases'],
-        deaths = data['deaths'],
-        recovered = data['recovered']
+        total_cases=data['cases'],
+        deaths=data['deaths'],
+        recovered=data['recovered']
     ).save()
+    # Fethching values from the table
     data = covid_world.objects.all().values('total_cases', 'deaths', 'recovered')
-    
+
+    # URL for country stats
     url_country = "https://corona.lmao.ninja/v2/countries"
     response = requests.get(url_country, verify=True)
+    # Converting to json format
     data_country = response.json()
 
+    # Deleting the rows in the table
     covid_country.objects.all().delete()
+    # Inserting the data in table in loop
     for datum in data_country:
         covid_country(
-            Country = datum['country'],
-            Total_Cases = datum['cases'],
-            Today_Cases = datum['todayCases'],
-            Total_Deaths = datum['deaths'],
-            Today_Deaths = datum['todayDeaths'],
-            Recovered = datum['recovered'],
-            Active = datum['active'],
-            Critical = datum['critical'],
-            Casepermillion = datum['casesPerOneMillion'],
-            Deathpermillion = datum['deathsPerOneMillion'],
-            Tests = datum['tests'],
-            Testpermillion = datum['testsPerOneMillion']
+            Country=datum['country'],
+            Total_Cases=datum['cases'],
+            Today_Cases=datum['todayCases'],
+            Total_Deaths=datum['deaths'],
+            Today_Deaths=datum['todayDeaths'],
+            Recovered=datum['recovered'],
+            Active=datum['active'],
+            Critical=datum['critical'],
+            Casepermillion=datum['casesPerOneMillion'],
+            Deathpermillion=datum['deathsPerOneMillion'],
+            Tests=datum['tests'],
+            Testpermillion=datum['testsPerOneMillion']
         ).save()
-    # print(data)
+
+    # Fethching values from the table
     data_country_obj = covid_country.objects.all().values('Country', 'Total_Cases', 'Today_Cases', 'Total_Deaths', 'Today_Deaths',
-                                                            'Recovered', 'Active', 'Critical', 'Casepermillion', 'Deathpermillion', 'Tests', 'Testpermillion')
-    
+                                                          'Recovered', 'Active', 'Critical', 'Casepermillion', 'Deathpermillion', 'Tests', 'Testpermillion')
+
+    # Converting the passed object to json format
     json.dumps(list(data_country_obj), cls=DjangoJSONEncoder)
 
+    # Converting the object to dataframe
     df = pd.DataFrame(data_country_obj)
-    
-    df = df.sort_values(['Total_Cases'], ascending=[False])
-    df.columns = ['Country, Others', 'Total Cases', 'New Cases', 'Total Deaths', 'New Deaths', 'Total Recovered', 'Active Cases', 'Critical Cases', 'Cases/ 1M pop', 'Deaths/ 1M pop', 'Total Tests', 'Tests/ 1M pop'] 
 
-    num_format = lambda x: '{:,}'.format(x)
+    # Sorting the dataframe in descending order by total cases
+    df = df.sort_values(['Total_Cases'], ascending=[False])
+    # Passing the new values to the dataframe columns
+    df.columns = ['Country, Others', 'Total Cases', 'New Cases', 'Total Deaths', 'New Deaths', 'Total Recovered',
+                  'Active Cases', 'Critical Cases', 'Cases/ 1M pop', 'Deaths/ 1M pop', 'Total Tests', 'Tests/ 1M pop']
+
+    # Formatting the dataframe data by adding ',' to the values
+    def num_format(x): return '{:,}'.format(x)
+
     def build_formatters(df, format):
-         return {
-             column:format 
-             for column, dtype in df.dtypes.items()
-             if dtype in [ np.dtype('int64'), np.dtype('float64') ] 
-    }
+        return {
+            column: format
+            for column, dtype in df.dtypes.items()
+            if dtype in [np.dtype('int64'), np.dtype('float64')]
+        }
     formatters = build_formatters(df, num_format)
 
-    df = df.to_html(classes="table table-bordered table-hover table-responsive-md", index=False, formatters=formatters)
+    # Converting dataframe to html table format
+    df = df.to_html(classes="table table-bordered table-hover table-responsive-md",
+                    index=False, formatters=formatters)
 
     return render(request, 'index.html', {'queryset': data, 'html_table': df, 'active': active, 'closed': closed})
