@@ -111,6 +111,9 @@
         -
         <a href="">Age</a>
     </div>
+    <div class="container links">
+        <a href="#statCountry" style="margin-top: 20px; text-decoration: underline;">view by country</a>
+    </div>
     <!-- links end -->
 
     <!-- cards -->
@@ -187,7 +190,7 @@
     <!-- cards end -->
 
     <!-- stats by country -->
-    <div class="container">
+    <div class="container" id="statCountry">
         <div class="container" style="margin-top: 50px;">
             <h3>Confirmed Cases and Deaths by Country, Territory, or Conveyance</h3>
         </div>
@@ -199,8 +202,17 @@
                 America's <i>MS
                     Zaandam</i> cruise ship.</p>
         </div>
+        <div class="container" style="margin-top: 30px;">
+            <div class="row">
+                <div class="col-8" style="text-align: left;"><span><button type="button" class="btn btn-secondary"
+                            disabled>All</button></span></div>
+                <div class="col-4 form-group" style="text-align: right;">
+                   <input class="form-control" type="text" placeholder="Search" id="search">
+                </div>
+            </div>
+        </div>
         <!-- table -->
-        <div class="container" style="margin-top: 40px;">
+        <div class="container" style="margin-top: 0px;">
             {% autoescape off %}
             {{ html_table }}
             {% endautoescape %}
@@ -212,7 +224,7 @@
     <!-- sources link -->
     <div class="container">
         <h2 style="margin-top: 50px;">Sources</h2>
-        <div align="left" style="font-size: 14px; font-family: noto sans,sans-serif; border-bottom: 1px #ccc solid;">
+        <div align="left" style="font-size: 14px; border-bottom: 1px #ccc solid;">
             <ol>
                 <li id="ref-1"><a
                         href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports/">Novel

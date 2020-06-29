@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core.serializers.json import DjangoJSONEncoder
 
-from .models import covid_world, covid_country
+from .models import CovidWorld, CovidCountry
 
 import requests
 import json
@@ -37,15 +37,15 @@ def trackCovid(request):
     closed['deaths'] = deaths
 
     # Deleting the rows in the table
-    covid_world.objects.all().delete()
+    CovidWorld.objects.all().delete()
     # Inserting the data in table
-    covid_world(
+    CovidWorld(
         total_cases=data['cases'],
         deaths=data['deaths'],
         recovered=data['recovered']
     ).save()
     # Fethching values from the table
-    data = covid_world.objects.all().values('total_cases', 'deaths', 'recovered')
+    data = CovidWorld.objects.all().values('total_cases', 'deaths', 'recovered')
 
     # URL for country stats
     url_country = "https://corona.lmao.ninja/v2/countries"
@@ -54,27 +54,27 @@ def trackCovid(request):
     data_country = response.json()
 
     # Deleting the rows in the table
-    covid_country.objects.all().delete()
+    CovidCountry.objects.all().delete()
     # Inserting the data in table in loop
     for datum in data_country:
-        covid_country(
-            Country=datum['country'],
-            Total_Cases=datum['cases'],
-            Today_Cases=datum['todayCases'],
-            Total_Deaths=datum['deaths'],
-            Today_Deaths=datum['todayDeaths'],
-            Recovered=datum['recovered'],
-            Active=datum['active'],
-            Critical=datum['critical'],
-            Casepermillion=datum['casesPerOneMillion'],
-            Deathpermillion=datum['deathsPerOneMillion'],
-            Tests=datum['tests'],
-            Testpermillion=datum['testsPerOneMillion']
+        CovidCountry(
+            country=datum['country'],
+            total_cases=datum['cases'],
+            today_cases=datum['todayCases'],
+            total_deaths=datum['deaths'],
+            today_deaths=datum['todayDeaths'],
+            recovered=datum['recovered'],
+            active=datum['active'],
+            critical=datum['critical'],
+            casepermillion=datum['casesPerOneMillion'],
+            deathpermillion=datum['deathsPerOneMillion'],
+            tests=datum['tests'],
+            testpermillion=datum['testsPerOneMillion']
         ).save()
 
     # Fethching values from the table
-    data_country_obj = covid_country.objects.all().values('Country', 'Total_Cases', 'Today_Cases', 'Total_Deaths', 'Today_Deaths',
-                                                          'Recovered', 'Active', 'Critical', 'Casepermillion', 'Deathpermillion', 'Tests', 'Testpermillion')
+    data_country_obj = CovidCountry.objects.all().values('country', 'total_cases', 'today_cases', 'total_deaths', 'today_deaths',
+                                                          'recovered', 'active', 'critical', 'casepermillion', 'deathpermillion', 'tests', 'testpermillion')
 
     # Converting the passed object to json format
     json.dumps(list(data_country_obj), cls=DjangoJSONEncoder)
@@ -83,7 +83,7 @@ def trackCovid(request):
     df = pd.DataFrame(data_country_obj)
 
     # Sorting the dataframe in descending order by total cases
-    df = df.sort_values(['Total_Cases'], ascending=[False])
+    df = df.sort_values(['total_cases'], ascending=[False])
     # Passing the new values to the dataframe columns
     df.columns = ['Country, Others', 'Total Cases', 'New Cases', 'Total Deaths', 'New Deaths', 'Total Recovered',
                   'Active Cases', 'Critical Cases', 'Cases/ 1M pop', 'Deaths/ 1M pop', 'Total Tests', 'Tests/ 1M pop']
@@ -100,7 +100,12 @@ def trackCovid(request):
     formatters = build_formatters(df, num_format)
 
     # Converting dataframe to html table format
-    df = df.to_html(classes="table table-bordered table-hover table-responsive-md",
+    df = df.to_html(classes="table table-bordered table-hover table-responsive-md sticky",
                     index=False, formatters=formatters)
 
     return render(request, 'index.html', {'queryset': data, 'html_table': df, 'active': active, 'closed': closed})
+
+def searchByCountry(request):
+    data = request.GET.get['search']
+    query = CovidCountry.objects.filter(country__icontains=data)
+    return render(request, 'index.html', {'query': query})
