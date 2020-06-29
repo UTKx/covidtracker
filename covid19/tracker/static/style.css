@@ -125,11 +125,65 @@ tbody > tr > :nth-child(1) {
   border-radius: 0;
 }
 
-.card-text {
-    font-family: noto sans,sans-serif;
-    color: #222;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
+.card-container {
+  margin-top: 40px;
+}
 
+.card {
+  height: 230px;
+  margin-top: 30px;
+}
+
+.card-body {
+  padding-top: 15px;
+}
+
+.card-header {
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+}
+
+.top {
+  text-align: center;
+}
+
+.left {
+  text-align: center;
+  padding-left: 0px;
+  margin-top: 30px;
+  
+}
+
+.right {
+  text-align: center;
+  padding-right: 0px;
+  margin-top: 30px;
+}
+
+.desc {
+  font-size: 13.5px;
+  color: #222;
+}
+
+.stat {
+  font-size: 24px;
+  font-weight: bold;
+  color: #222;
+}
+
+.stat-mild {
+  color: #8080FF;
+}
+
+.stat-crit {
+  color: #FF621F;
+}
+
+.stat-recovered {
+  color: #8ACA2B;
+}
+
+.stat-death {
+  color: #ff0000;
 }
