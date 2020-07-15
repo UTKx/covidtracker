@@ -137,13 +137,13 @@
                         <div class="row">
                             <div class="col left">
                                 <div>
-                                    <span class="stat stat-mild">{{active.mild|intcomma}}</span>
+                                    <span class="stat stat-mild">{{active.mild|intcomma}}</span>&nbsp;(<strong>{{active.mild_per}}</strong>%)
                                     <div class="desc">in Mild Condition</div>
                                 </div>
                             </div>
                             <div class="col right">
                                 <div>
-                                    <span class="stat stat-crit">{{active.critical|intcomma}}</span>
+                                    <span class="stat stat-crit">{{active.critical|intcomma}}</span>&nbsp;(<strong>{{active.crit_per}}</strong>%)
                                     <div class="desc">Serious or Critical</div>
                                 </div>
                             </div>
@@ -170,13 +170,13 @@
                         <div class="row">
                             <div class="col left">
                                 <div>
-                                    <span class="stat stat-recovered">{{closed.recovered|intcomma}}</span>
+                                    <span class="stat stat-recovered">{{closed.recovered|intcomma}}</span>&nbsp;(<strong>{{closed.rec_per}}</strong>%)
                                     <div class="desc">Recovered / Discharged</div>
                                 </div>
                             </div>
                             <div class="col right">
                                 <div>
-                                    <span class="stat stat-death">{{closed.deaths|intcomma}}</span>
+                                    <span class="stat stat-death">{{closed.deaths|intcomma}}</span>&nbsp;(<strong>{{closed.death_per}}</strong>%)
                                     <div class="desc">Deaths</div>
                                 </div>
                             </div>
