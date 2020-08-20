@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 
 ## Installation and Usage
-1. Firstly, get the repo on your machine using command `git https://github.com/UTKx/covidtracker.git`.
+1. Firstly, get the repo on your machine using command `git https://github.com/UTKx/covidtracker.git` to whatever directory.
 2. Create a virtual environment using command `virtualenv your-environment-name`. Name your environment whatever you like.
 3. Now activate your newly created environment.
 	+ For Windows users
