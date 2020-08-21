@@ -1,0 +1,374 @@
+{% load humanize %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>nCoVTracker&nbsp;|&nbsp;Coronavirus Update</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/5f5dfb5344.js" crossorigin="anonymous"></script>
+
+    <!-- style.css -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+<body>
+    <!-- navbar start -->
+    <nav class="navbar navbar-expand-md navbar-light">
+        <a class="navbar-brand" href="#">
+            <!-- <img src="" width="30" height="30" class="d-inline-block align-top" alt=""> -->
+            <i class="fas fa-virus" style="color: #ff0000; font-size: 25px;"></i>
+            n<span style="color: #ff0000;">CoV</span>Tracker
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- navbar end -->
+
+    <!-- messgae start-->
+    <div class="container-fluid message" style="padding-left: 0; padding-right: 0;">
+        <div class="alert alert-danger" role="alert">
+            Stay Home. Save Lives : Help Stop Coronavirus
+        </div>
+    </div>
+    <!-- message end -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 my-col">COVID-19 CORONAVIRUS PANDEMIC
+            </div>
+        </div>
+    </div>
+
+    <!-- world stats -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                {% for qs in queryset %}
+                <div class="row">
+                    <div class="col focus-col">Coronavirus Cases:</div>
+                </div>
+                <div class="row">
+                    <div class="col focus-col2 active-cases">{{ qs.total_cases|intcomma }}</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col focus-col">Deaths:</div>
+                </div>
+                <div class="row">
+                    <div class="col focus-col2 active-death">{{ qs.deaths|intcomma }}</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col focus-col">Recovered:</div>
+                </div>
+                <div class="row">
+                    <div class="col focus-col2 active-recov">{{ qs.recovered|intcomma }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- stats end -->
+
+    <!-- links -->
+    <div class="container links">
+        <a href="">Mortality</a>
+        -
+        <a href="">Symptoms</a>
+        -
+        <a href="">Incubation Period</a>
+        -
+        <a href="">Age</a>
+    </div>
+    <div class="container links">
+        <a href="#statCountry" style="margin-top: 20px; text-decoration: underline;">view by country</a>
+    </div>
+    <!-- links end -->
+
+    <!-- cards -->
+    <div class="container card-container">
+        <div class="row">
+            <!-- 1st card -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        ACTIVE CASES
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col top">
+                                <div>
+                                    <span class="stat">{{active.active|intcomma}}</span>
+                                    <div class="desc">Currently Infected Patients</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col left">
+                                <div>
+                                    <span
+                                        class="stat stat-mild">{{active.mild|intcomma}}</span>&nbsp;(<strong>{{active.mild_per}}</strong>%)
+                                    <div class="desc">in Mild Condition</div>
+                                </div>
+                            </div>
+                            <div class="col right">
+                                <div>
+                                    <span
+                                        class="stat stat-crit">{{active.critical|intcomma}}</span>&nbsp;(<strong>{{active.crit_per}}</strong>%)
+                                    <div class="desc">Serious or Critical</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end 1st card -->
+            <!-- 2nd card -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        CLOSED CASES
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col top">
+                                <div>
+                                    <span class="stat">{{closed.closed|intcomma}}</span>
+                                    <div class="desc">Cases which had an outcome</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col left">
+                                <div>
+                                    <span
+                                        class="stat stat-recovered">{{closed.recovered|intcomma}}</span>&nbsp;(<strong>{{closed.rec_per}}</strong>%)
+                                    <div class="desc">Recovered / Discharged</div>
+                                </div>
+                            </div>
+                            <div class="col right">
+                                <div>
+                                    <span
+                                        class="stat stat-death">{{closed.deaths|intcomma}}</span>&nbsp;(<strong>{{closed.death_per}}</strong>%)
+                                    <div class="desc">Deaths</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 2nd card end -->
+        </div>
+    </div>
+    <!-- cards end -->
+
+    <!-- stats by country -->
+    <div class="container" id="statCountry">
+        <div class="container" style="margin-top: 50px;">
+            <h3>Confirmed Cases and Deaths by Country, Territory, or Conveyance</h3>
+        </div>
+        <div class="container" style="margin-top: 40px;">
+            <p>The <b>coronavirus</b> COVID-19 is affecting <b>203 countries and territories</b> around the world and
+                <b>2 international
+                    conveyances:</b> the <i>Diamond Princess</i> cruise ship harbored in Yokohama, Japan, and the
+                Holland
+                America's <i>MS
+                    Zaandam</i> cruise ship.</p>
+        </div>
+        <div class="container" style="margin-top: 30px;">
+            <div class="row">
+                <div class="col-9" style="text-align: left;"><span><button type="button" class="btn btn-secondary"
+                            disabled>All</button></span></div>
+                <div class="col-3 form-group" style="text-align: right;">
+                    <form action="{% url 'search' %}" method="get">
+                        <input name="search" class="form-control" type="text" placeholder="Search" id="search">
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% block content %}
+
+        {% endblock %}
+    </div>
+    <!-- stats end -->
+
+    <!-- sources link -->
+    <div class="container">
+        <h2 style="margin-top: 50px;">Sources</h2>
+        <div align="left" style="font-size: 14px; border-bottom: 1px #ccc solid;">
+            <ol>
+                <li id="ref-1"><a
+                        href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports/">Novel
+                        Coronavirus (2019-nCoV) situation reports</a> -
+                    <a href="https://www.who.int/">World Health Organization</a> (WHO) </li>
+                <li id="ref-2"><a href="https://www.cdc.gov/coronavirus/2019-ncov/cases-in-us.html">2019 Novel
+                        Coronavirus
+                        (2019-nCoV) in the U.S.</a> -. <a href="https://www.cdc.gov/">U.S. Centers for Disease Control
+                        and
+                        Prevention</a> (CDC) </li>
+                <li id="ref-3"><a href="http://www.nhc.gov.cn/xcs/yqtb/list_gzbd.shtml">Outbreak Notification</a> -
+                    National
+                    Health Commission (NHC) of the People’s Republic of China</li>
+                <li id="ref-4"><a href="https://www.health.gov.au/health-topics/novel-coronavirus-2019-ncov">Novel
+                        coronavirus (2019-nCoV)</a> - Australian Government Department of Health</li>
+                <li id="ref-5"><a href="https://www.medrxiv.org/content/10.1101/2020.01.23.20018549v2">Novel coronavirus
+                        2019-nCoV: early estimation of epidemiological parameters and epidemic prediction</a> - Jonathan
+                    M.
+                    Read et al, Jan. 23,2020.</li>
+                <li id="ref-6"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3524675">Early
+                        Transmissibility
+                        Assessment of a Novel Coronavirus in Wuhan, China</a> - Maimuna Majumder and Kenneth D. Mandl,
+                    Harvard University - Computational Health Informatics Program - Posted: 24 Jan 2020 Last revised: 27
+                    Jan
+                    2020</li>
+                <li id="ref-7"><a
+                        href="https://www.imperial.ac.uk/mrc-global-infectious-disease-analysis/news--wuhan-coronavirus/">Report
+                        3: Transmissibility of 2019-nCoV</a> - 25 January 2020 - Imperial College London‌</li>
+                <li id="ref-8"><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3809029/">Case fatality risk of
+                        influenza A(H1N1pdm09): a systematic review</a> - Epidemiology. Nov. 24, 2013</li>
+                <li id="ref-9"><a
+                        href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)30185-9/fulltext#tbl1">A
+                        novel coronavirus outbreak of global health concern</a> - Chen Want et al. The Lancet. January
+                    24,
+                    2020 </li>
+                <li id="ref-10"><a href="https://www.cdc.gov/coronavirus/2019-ncov/about/symptoms.html">Symptoms of
+                        Novel
+                        Coronavirus (2019-nCoV)</a> - CDC</li>
+                <li id="ref-11"><a
+                        href="https://www.aljazeera.com/news/2020/01/chinas-national-health-commission-news-conference-coronavirus-200126105935024.html">China's
+                        National Health Commission news conference on coronavirus</a> - Al Jazeera. January 26, 2020
+                </li>
+                <li id="ref-12"><a
+                        href="https://www.reuters.com/article/us-china-health-who/wuhan-lockdown-unprecedented-shows-commitment-to-contain-virus-who-representative-in-china-idUSKBN1ZM1G9">Wuhan
+                        lockdown 'unprecedented', shows commitment to contain virus: WHO representative in China</a> -
+                    Reuters. January 23, 2020</li>
+                <li id="ref-13"><a
+                        href="https://www.who.int/news-room/detail/23-01-2020-statement-on-the-meeting-of-the-international-health-regulations-(2005)-emergency-committee-regarding-the-outbreak-of-novel-coronavirus-(2019-ncov)">Statement
+                        on the meeting of the International Health Regulations (2005) Emergency Committee regarding the
+                        outbreak of novel coronavirus (2019-nCoV)</a> - WHO, January 23, 2020 </li>
+                <li id="ref-14"><a
+                        href="https://www.who.int/news-room/events/detail/2020/01/30/default-calendar/international-health-regulations-emergency-committee-on-novel-coronavirus-in-china">International
+                        Health Regulations Emergency Committee on novel coronavirus in China</a> - WHO, January 30, 2020
+                </li>
+                <li id="ref-15"><a
+                        href="https://www.theonlinecitizen.com/2020/01/29/human-to-human-transmission-of-wuhan-virus-outside-of-china-confirmed-in-germany-japan-and-vietnam/">Human-to-human
+                        transmission of Wuhan virus outside of China, confirmed in Germany, Japan and Vietnam</a> - The
+                    Online Citizen, Jan. 29, 2020</li>
+                <li id="ref-16"><a href="https://www.pscp.tv/WHO/1OdJrqEvgaeGX">Who: "Live from Geneva on the new
+                        #coronavirus outbreak"</a></li>
+                <li id="ref-17"><a href="https://www.cdc.gov/media/releases/2020/p0130-coronavirus-spread.html">CDC
+                        Confirms
+                        Person-to-Person Spread of New Coronavirus in the United States</a> - CDC Press Release, Jan.
+                    30,
+                    2020</li>
+                <li id="ref-18"> <a
+                        href="https://www.gov.uk/government/news/cmo-confirms-cases-of-coronavirus-in-england">CMO
+                        confirms
+                        cases of coronavirus in England</a> - CMO, UK, Jan. 31, 2020</li>
+                <li id="ref-19"><a
+                        href="https://www.thelocal.fr/20200131/coronavirus-in-france-what-you-need-to-know">Coronavirus
+                        in
+                        France: what you need to know</a> - The Local France, Jan. 31, 2020</li>
+                <li id="ref-20"><a href="https://tass.com/society/1115101">First two persons infected with coronavirus
+                        identified in Russia</a> - Tass, Jan. 31, 2020</li>
+                <li id="ref-21"><a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/jmv.25689?af=R">Updated
+                        understanding of the outbreak of 2019 novel coronavirus (2019nCoV) in Wuhan, China</a> - Journal
+                    of
+                    Medical Virology, Jan. 29, 2020 </li>
+                <li id="ref-22"><a
+                        href="https://www.medrxiv.org/content/10.1101/2020.01.27.20018952v1.full.pdf">Estimating
+                        the effective reproduction number of the 2019-nCoV in China</a> - Zhidong Cao et al., Jan. 29,
+                    2020
+                </li>
+                <li id="ref-23"><a
+                        href="https://www.sciencedirect.com/science/article/pii/S1201971220300539">Preliminary
+                        estimation of the basic reproduction number of novel coronavirus (2019-nCoV) in China, from 2019
+                        to
+                        2020: A data-driven analysis in the early phase of the outbreak</a> - Jan. 30, 2020 </li>
+                <li id="ref-24"><a href="https://www.bbc.com/news/world-asia-china-51368873">Coronavirus: Window of
+                        opportunity to act, World Health Organization says</a> - BBC, Feb. 4, 2020</li>
+                <li id="ref-25"><a
+                        href="https://jamanetwork.com/journals/jama/fullarticle/2761044?guestAccessKey=f61bd430-07d8-4b86-a749-bec05bfffb65">Clinical
+                        Characteristics of 138 Hospitalized Patients With 2019 Novel Coronavirus–Infected Pneumonia in
+                        Wuhan, China</a> - Wang et. al, JAMA, Feb. 7, 2020</li>
+            </ol>
+        </div>
+    </div>
+    <!-- sources links end -->
+
+    <!-- footer -->
+    <div class="container-fluid"
+        style="border-top: 1px solid #e3e7e9; border-bottom: 1px solid #e3e7e9; margin-top: 70px;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 footer-col">n<span style="color: #ff0000;">CoV</span>Tracker</div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12 footer-col">
+                    <a href="">About</a>
+                    |
+                    <a href="">FAQ</a>
+                    |
+                    <a href="">Languages</a>
+                    |
+                    <a href="">Licensing</a>
+                    |
+                    <a href="">Contact</a>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-2 footer-col">
+                    <a href="" title="Newsletter"><i class="fas fa-envelope-open-text"
+                            style="padding: 0px 5px; color: #E94F37;"></i></a>
+                    <a href="" title="Twitter"><i class="fab fa-twitter"
+                            style="padding: 0px 5px; color: #1ca0f1;"></i></a>
+                    <a href="" title="Facebook"><i class="fab fa-facebook-f"
+                            style="padding: 0px 5px; color: #4267b2;"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row justify-content-center super-footer" style="font-size: 12px;">
+                &copy; Copyright nCoVTracker.info - All rights reserved -&nbsp;<a href="#"
+                    style="font-size: 12px;">Disclaimer & Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    <!-- footer end -->
+</body>
+
+</html>

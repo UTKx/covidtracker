@@ -5,5 +5,5 @@ from . import views
 
 urlpatterns = [
     path('', views.trackCovid),
-    # path('search/', views.searchByCountry)
+    path('search/', views.searchByCountry, name="search")
 ]

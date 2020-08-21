@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block content %}
+    {% for qs in query %}
+        
+        {{qs.country}} {{qs.total_cases}}
+        
+    {% endfor %}
+{% endblock %}

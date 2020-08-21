@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.serializers.json import DjangoJSONEncoder
 
 from .models import CovidWorld, CovidCountry
@@ -15,6 +15,7 @@ def trackCovid(request):
     # URL for world stats
     url_all = "https://corona.lmao.ninja/v2/all"
     response = requests.get(url_all, verify=True)
+
     # Converting to json format
     data = response.json()
 
@@ -78,7 +79,7 @@ def trackCovid(request):
 
     # Fethching values from the table
     data_country_obj = CovidCountry.objects.all().values('country', 'total_cases', 'today_cases', 'total_deaths', 'today_deaths',
-                                                          'recovered', 'active', 'critical', 'casepermillion', 'deathpermillion', 'tests', 'testpermillion')
+                                                         'recovered', 'active', 'critical', 'casepermillion', 'deathpermillion', 'tests', 'testpermillion')
 
     # Converting the passed object to json format
     json.dumps(list(data_country_obj), cls=DjangoJSONEncoder)
@@ -109,7 +110,41 @@ def trackCovid(request):
 
     return render(request, 'index.html', {'queryset': data, 'html_table': df, 'active': active, 'closed': closed})
 
+
 def searchByCountry(request):
-    data = request.GET.get['search']
-    query = CovidCountry.objects.filter(country__icontains=data)
-    return render(request, 'index.html', {'query': query})
+    # URL for world stats
+    url_all = "https://corona.lmao.ninja/v2/all"
+    response = requests.get(url_all, verify=True)
+
+    # Converting to json format
+    data = response.json()
+
+    # Dictionary for active cases
+    active = {}
+    active_cases = int(data['active'])
+    critical = int(data['critical'])
+    mild_cases = active_cases - critical
+    active['active'] = active_cases
+    active['critical'] = critical
+    active['mild'] = mild_cases
+    active['mild_per'] = round((mild_cases/active_cases)*100)
+    active['crit_per'] = round((critical/active_cases)*100)
+
+    # Dictionary for closed cases
+    closed = {}
+    recovered = int(data['recovered'])
+    deaths = int(data['deaths'])
+    closed_cases = recovered + deaths
+    closed['closed'] = closed_cases
+    closed['recovered'] = recovered
+    closed['deaths'] = deaths
+    closed['rec_per'] = round((recovered/closed_cases)*100)
+    closed['death_per'] = round((deaths/closed_cases)*100)
+
+    # Fethching values from the table
+    data = CovidWorld.objects.all()
+
+    get_data = request.GET.get('search')
+    query = CovidCountry.objects.filter(country__istartswith=get_data).values()
+    print('>>>>>', query)
+    return render(request, 'search.html', {'query': query, 'queryset': data, 'active': active, 'closed': closed})
