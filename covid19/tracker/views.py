@@ -43,23 +43,27 @@ def trackCovid(request):
 
     # Deleting the rows in the table
     CovidWorld.objects.all().delete()
+    
     # Inserting the data in table
     CovidWorld(
         total_cases=data['cases'],
         deaths=data['deaths'],
         recovered=data['recovered']
     ).save()
+    
     # Fethching values from the table
     data = CovidWorld.objects.all().values('total_cases', 'deaths', 'recovered')
 
     # URL for country stats
     url_country = "https://corona.lmao.ninja/v2/countries"
     response = requests.get(url_country, verify=True)
+    
     # Converting to json format
     data_country = response.json()
 
     # Deleting the rows in the table
     CovidCountry.objects.all().delete()
+    
     # Inserting the data in table in loop
     for datum in data_country:
         CovidCountry(
@@ -89,6 +93,7 @@ def trackCovid(request):
 
     # Sorting the dataframe in descending order by total cases
     df = df.sort_values(['total_cases'], ascending=[False])
+    
     # Passing the new values to the dataframe columns
     df.columns = ['Country, Others', 'Total Cases', 'New Cases', 'Total Deaths', 'New Deaths', 'Total Recovered',
                   'Active Cases', 'Critical Cases', 'Cases/ 1M pop', 'Deaths/ 1M pop', 'Total Tests', 'Tests/ 1M pop']
@@ -144,20 +149,27 @@ def searchByCountry(request):
     # Fethching values from the table
     data = CovidWorld.objects.all()
 
+    # Geting data from get request
     get_data = request.GET.get('search')
+
+    # Querying data 
     query = CovidCountry.objects.filter(country__istartswith=get_data).values('country', 'total_cases', 'today_cases', 'total_deaths', 'today_deaths',
                                                                               'recovered', 'active', 'critical', 'casepermillion', 'deathpermillion', 'tests', 'testpermillion')
-    # print('>>>>>', query)
-
+    
+    # Converting the passed object to json format
     json.dumps(list(query), cls=DjangoJSONEncoder)
 
+    # Converting the object to dataframe
     df = pd.DataFrame(query)
-
+    
+    # Sorting the dataframe in descending order by total cases
     df = df.sort_values(['total_cases'], ascending=[False])
 
+    # Passing the new values to the dataframe columns
     df.columns = ['Country, Others', 'Total Cases', 'New Cases', 'Total Deaths', 'New Deaths', 'Total Recovered',
                   'Active Cases', 'Critical Cases', 'Cases/ 1M pop', 'Deaths/ 1M pop', 'Total Tests', 'Tests/ 1M pop']
-
+    
+    # Formatting the dataframe data by adding ',' to the values
     def num_format(x): return '{:,}'.format(x)
 
     def build_formatters(df, format):
