@@ -145,6 +145,31 @@ def searchByCountry(request):
     data = CovidWorld.objects.all()
 
     get_data = request.GET.get('search')
-    query = CovidCountry.objects.filter(country__istartswith=get_data).values()
-    print('>>>>>', query)
-    return render(request, 'search.html', {'query': query, 'queryset': data, 'active': active, 'closed': closed})
+    query = CovidCountry.objects.filter(country__istartswith=get_data).values('country', 'total_cases', 'today_cases', 'total_deaths', 'today_deaths',
+                                                                              'recovered', 'active', 'critical', 'casepermillion', 'deathpermillion', 'tests', 'testpermillion')
+    # print('>>>>>', query)
+
+    json.dumps(list(query), cls=DjangoJSONEncoder)
+
+    df = pd.DataFrame(query)
+
+    df = df.sort_values(['total_cases'], ascending=[False])
+
+    df.columns = ['Country, Others', 'Total Cases', 'New Cases', 'Total Deaths', 'New Deaths', 'Total Recovered',
+                  'Active Cases', 'Critical Cases', 'Cases/ 1M pop', 'Deaths/ 1M pop', 'Total Tests', 'Tests/ 1M pop']
+
+    def num_format(x): return '{:,}'.format(x)
+
+    def build_formatters(df, format):
+        return {
+            column: format
+            for column, dtype in df.dtypes.items()
+            if dtype in [np.dtype('int64'), np.dtype('float64')]
+        }
+    formatters = build_formatters(df, num_format)
+
+    # Converting dataframe to html table format
+    df = df.to_html(classes="table table-bordered table-hover table-responsive-md sticky",
+                    index=False, formatters=formatters)
+
+    return render(request, 'search.html', {'html_table': df, 'queryset': data, 'active': active, 'closed': closed})

@@ -3,9 +3,9 @@
 {% load static %}
 
 {% block content %}
-    {% for qs in query %}
-        
-        {{qs.country}} {{qs.total_cases}}
-        
-    {% endfor %}
+<div class="container" style="margin-top: 0;">
+    {% autoescape off %}
+    {{ html_table }}
+    {% endautoescape %}
+</div>
 {% endblock %}
