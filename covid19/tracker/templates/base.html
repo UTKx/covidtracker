@@ -71,7 +71,7 @@
     <!-- world stats -->
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-lg-4 world">
                 {% for qs in queryset %}
                 <div class="row">
                     <div class="col focus-col">Coronavirus Cases:</div>
@@ -80,7 +80,7 @@
                     <div class="col focus-col2 active-cases">{{ qs.total_cases|intcomma }}</div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-lg-4 world">
                 <div class="row">
                     <div class="col focus-col">Deaths:</div>
                 </div>
@@ -88,7 +88,7 @@
                     <div class="col focus-col2 active-death">{{ qs.deaths|intcomma }}</div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-lg-4 world">
                 <div class="row">
                     <div class="col focus-col">Recovered:</div>
                 </div>
@@ -120,14 +120,14 @@
     <div class="container card-container">
         <div class="row">
             <!-- 1st card -->
-            <div class="col-md-6">
+            <div class="col-lg-6">
                 <div class="card">
                     <div class="card-header">
                         ACTIVE CASES
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col top">
+                            <div class="col-12 top">
                                 <div>
                                     <span class="stat">{{active.active|intcomma}}</span>
                                     <div class="desc">Currently Infected Patients</div>
@@ -135,14 +135,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col left">
+                            <div class="col-6 left">
                                 <div>
                                     <span
                                         class="stat stat-mild">{{active.mild|intcomma}}</span>&nbsp;(<strong>{{active.mild_per}}</strong>%)
                                     <div class="desc">in Mild Condition</div>
                                 </div>
                             </div>
-                            <div class="col right">
+                            <div class="col-6 right">
                                 <div>
                                     <span
                                         class="stat stat-crit">{{active.critical|intcomma}}</span>&nbsp;(<strong>{{active.crit_per}}</strong>%)
@@ -155,14 +155,14 @@
             </div>
             <!-- end 1st card -->
             <!-- 2nd card -->
-            <div class="col-md-6">
+            <div class="col-lg-6">
                 <div class="card">
                     <div class="card-header">
                         CLOSED CASES
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col top">
+                            <div class="col-12 top">
                                 <div>
                                     <span class="stat">{{closed.closed|intcomma}}</span>
                                     <div class="desc">Cases which had an outcome</div>
@@ -170,14 +170,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col left">
+                            <div class="col-6 left">
                                 <div>
                                     <span
                                         class="stat stat-recovered">{{closed.recovered|intcomma}}</span>&nbsp;(<strong>{{closed.rec_per}}</strong>%)
                                     <div class="desc">Recovered / Discharged</div>
                                 </div>
                             </div>
-                            <div class="col right">
+                            <div class="col-6 right">
                                 <div>
                                     <span
                                         class="stat stat-death">{{closed.deaths|intcomma}}</span>&nbsp;(<strong>{{closed.death_per}}</strong>%)
