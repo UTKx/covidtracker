@@ -27,9 +27,9 @@ def trackCovid(request):
     active['active'] = active_cases
     active['critical'] = critical
     active['mild'] = mild_cases
-    active['mild_per'] = round((mild_cases/active_cases)*100)
-    active['crit_per'] = round((critical/active_cases)*100)
-
+    active['mild_per'] = round((mild_cases/active_cases)*100, 1)
+    active['crit_per'] = round((critical/active_cases)*100, 1)
+    print(active)
     # Dictionary for closed cases
     closed = {}
     recovered = int(data['recovered'])
@@ -38,8 +38,8 @@ def trackCovid(request):
     closed['closed'] = closed_cases
     closed['recovered'] = recovered
     closed['deaths'] = deaths
-    closed['rec_per'] = round((recovered/closed_cases)*100)
-    closed['death_per'] = round((deaths/closed_cases)*100)
+    closed['rec_per'] = round((recovered/closed_cases)*100, 1)
+    closed['death_per'] = round((deaths/closed_cases)*100, 1)
 
     # Deleting the rows in the table
     CovidWorld.objects.all().delete()
